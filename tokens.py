@@ -1,9 +1,9 @@
 
 
 #Данні від твіттера
-username = '@Bohdan142'
-password = '1122ssaa'
+username = '@Bohdan11042'
+password = 'Gasdsd0'
 
 
-#Токен від фазербота
-TOKEN = '67863394:AAGOY8q6trEWBfUnw0lbaT5mzXcEY' 
+#Токен від
+TOKEN = '67863394:AAGWOIFqhnBfUnw0lbaT5mzXcEY' 
