@@ -1,6 +1,7 @@
 from aiogram import Router, Bot, F, types
 from aiogram.filters import Command
 from typing import List
+from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import (
     InputMediaPhoto,
     InputMediaVideo,
@@ -50,7 +51,10 @@ async def process_product_photo(message: types.Message, bot: Bot, album: List[Me
             name = f'images/{uuid.uuid4()}{element.video.file_name[-4:]}'
             file_paths.append(str(name))
             input_media = InputMediaVideo(media=element.video.file_id, **caption_kwargs)
-            await bot.download(input_media.media, destination=str(name))
+            try:
+                await bot.download(input_media.media, destination=str(name))
+            except TelegramBadRequest:
+                pass
     print(post_text, file_paths, sep='\n')
     gomain(post_text, file_paths)
         
@@ -71,7 +75,10 @@ async def process_product_one_photo(message: types.Message, bot: Bot):
         post_text = message.caption
     else:
         post_text = ''   
-    await bot.download(photo, destination=file_paths[0])
+    try:
+        await bot.download(photo, destination=file_paths[0])
+    except TelegramBadRequest:
+        pass
     print(post_text, file_paths)
     gomain(post_text, file_paths)
     
